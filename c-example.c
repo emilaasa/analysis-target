@@ -2,6 +2,11 @@
 int f(){return 0;} 
 int main(int argc, char *argv[])
 {
+      double first, second, temp;
+      printf("Enter first number: ");
+      scanf("%lf", &first);
+      printf("Enter second number: ");
+      scanf("%lf", &second);
 
       double first, second, temp;
       printf("Enter first number: ");
