@@ -5657,6 +5657,12 @@ int zoo_remove_watches(zhandle_t *zh, const char *path, ZooWatcherType wtype,
     return remove_watches(zh, path, wtype, watcher, watcherCtx, local, 0);
 }
 
+int zoo_remove_watches3(zhandle_t *zh, const char *path, ZooWatcherType wtype,
+         watcher_fn watcher, void *watcherCtx, int local)
+{
+    return remove_watches(zh, path, wtype, watcher, watcherCtx, local, 0);
+}
+
 int zoo_remove_all_watches(
         zhandle_t *zh, const char *path, ZooWatcherType wtype, int local)
 {
