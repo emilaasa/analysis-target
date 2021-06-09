@@ -5631,6 +5631,24 @@ static int remove_watches(
     free_sync_completion(sc);
     return rc;
 }
+int zoo_multi3(zhandle_t *zh, int count, const zoo_op_t *ops, zoo_op_result_t *results)
+{
+    int rc;
+
+    struct sync_completion *sc = alloc_sync_completion();
+    if (!sc) {
+        return ZSYSTEMERROR;
+    }
+
+    rc = zoo_amulti(zh, count, ops, results, SYNCHRONOUS_MARKER, sc);
+    if (rc == ZOK) {
+        wait_sync_completion(sc);
+        rc = sc->rc;
+    }
+    free_sync_completion(sc);
+
+    return rc;
+}
 
 int zoo_multi(zhandle_t *zh, int count, const zoo_op_t *ops, zoo_op_result_t *results)
 {
